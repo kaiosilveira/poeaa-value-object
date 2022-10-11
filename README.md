@@ -1,62 +1,16 @@
 [![Continuous Integration](https://github.com/kaiosilveira/csharp-value-object/actions/workflows/dotnet.yml/badge.svg)](https://github.com/kaiosilveira/csharp-value-object/actions/workflows/dotnet.yml)
 
-# Value Object - CSharp
+# Value Object - C#
 
 A small simple object, like money or a date range, whose equality isn’t based on identity.
 
+## Implementation example
+
+A `Tag` can be modeled as a value object. Simple tags contain only a text label and are considered equal if the text in one tag matches the text in another.
+
 ## Implementation considerations
 
-To implement a value object in C#, we need to override the `Equals` and `GetHashCode` methods. These methods are used internally by the language to perform object equality comparisons and their defaults are based on memory address. As we are only interested in the value equality and not necessarily in the memory address of each object, we can override `Equals` to compare a tag's text to some other tag's text. We also need to make sure that `GetHashCode` uses the hash code of the tag's text itself, so it's correctly found inside a `HashSet` and other hash-code-based data structures.
-
-## Implementation details
-
-As described above, we need to override the `Tag.Equals` and `Tag.GetHashCode` methods. The following sections go through these overwrites.
-
-### Overwriting Tag.Equals
-
-We can apply the logic described in the section above to override the `Equals` method:
-
-```csharp
-// class Tag
-public override bool Equals(object? obj)
-{
-  var anotherTag = (Tag)obj;
-  return this.Text == anotherTag.Text;
-}
-```
-
-This would make the compiler to implode with many warnings related to possibly null references and unsafe casts, though. To address these concerns, we can apply some defensive programming. The final code would look like this:
-
-```csharp
-// class Tag
-public override bool Equals(object? obj)
-{
-  if (obj == null) return false;
-
-  try
-  {
-    var anotherTag = (Tag)obj;
-    return this.Text == anotherTag.Text;
-  }
-  catch (InvalidCastException)
-  {
-    return false;
-  }
-}
-```
-
-### Overwriting Tag.GetHashCode
-
-To overwrite the `GetHashCode` method, we need whether the object has any value in the first place. If that's the case, as it only has a single field, we can return the hash code of its `Text`. The code looks like this:
-
-```csharp
-// class Tag
-public override int GetHashCode()
-{
-  if (String.IsNullOrEmpty(this.Text)) return 0;
-  return this.Text.GetHashCode();
-}
-```
+To implement a value object in C#, we need to override the `Equals` and `GetHashCode` methods. These methods are used internally by the language to perform object equality comparisons and their defaults are based on comparing memory addresses. As we are only interested in the value equality and not necessarily in the memory address of each object, we can override `Equals` to compare a tag's text to some other tag's text. We also need to make sure that `GetHashCode` uses the hash code of the tag's text itself, so it's correctly found inside a `HashSet` and other hash-code-based data structures.
 
 ## Test suite
 
@@ -116,3 +70,53 @@ In a good [TDD](https://github.com/kaiosilveira/test-driven-development) fashion
 ```
 
 The full test suite is available at [TagTest.cs](./CSharpValueObject.Tests/TagTest.cs).
+
+## Implementation details
+
+As described above, we need to override the `Tag.Equals` and `Tag.GetHashCode` methods. The following sections go through these overwrites.
+
+### Overwriting `Tag.Equals`
+
+We can apply the logic described in the section above to override the `Equals` method:
+
+```csharp
+// class Tag
+public override bool Equals(object? obj)
+{
+  var anotherTag = (Tag)obj;
+  return this.Text == anotherTag.Text;
+}
+```
+
+This would make the compiler to implode with many warnings related to possibly null references and unsafe casts, though. To address these concerns, we can apply some defensive programming. The final code would look like this:
+
+```csharp
+// class Tag
+public override bool Equals(object? obj)
+{
+  if (obj == null) return false;
+
+  try
+  {
+    var anotherTag = (Tag)obj;
+    return this.Text == anotherTag.Text;
+  }
+  catch (InvalidCastException)
+  {
+    return false;
+  }
+}
+```
+
+### Overwriting `Tag.GetHashCode`
+
+To overwrite the `GetHashCode` method, we need whether the object has any value in the first place. If that's the case, as it only has a single field, we can return the hash code of its `Text`. The code looks like this:
+
+```csharp
+// class Tag
+public override int GetHashCode()
+{
+  if (String.IsNullOrEmpty(this.Text)) return 0;
+  return this.Text.GetHashCode();
+}
+```
