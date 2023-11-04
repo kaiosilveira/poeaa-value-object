@@ -69,7 +69,7 @@ In a good [TDD](https://github.com/kaiosilveira/test-driven-development) fashion
   }
 ```
 
-The full test suite is available at [TagTest.cs](./CSharpValueObject.Tests/TagTest.cs).
+The full test suite is available at [TagTest.cs](./PoEAAValueObject.Tests/TagTest.cs).
 
 ## Implementation details
 

@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpValueObject.Tests", "CSharpValueObject.Tests\CSharpValueObject.Tests.csproj", "{43FDC497-4AD8-4556-8A8F-7125B4417E73}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PoEAAValueObject.Tests", "PoEAAValueObject.Tests\PoEAAValueObject.Tests.csproj", "{43FDC497-4AD8-4556-8A8F-7125B4417E73}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpValueObject.Example", "CSharpValueObject.Example\CSharpValueObject.Example.csproj", "{44A3D22D-AB11-440C-AFBE-893C3947A5E3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PoEAAValueObject.Example", "PoEAAValueObject.Example\PoEAAValueObject.Example.csproj", "{44A3D22D-AB11-440C-AFBE-893C3947A5E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

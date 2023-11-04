@@ -1,8 +1,8 @@
 using Xunit;
 using System.Collections.Generic;
-using CSharpValueObject.Example;
+using PoEAAValueObject.Example;
 
-namespace CSharpValueObject.Tests;
+namespace PoEAAValueObject.Tests;
 
 public class TagTests
 {

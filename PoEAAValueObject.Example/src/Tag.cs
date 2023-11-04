@@ -1,4 +1,4 @@
-namespace CSharpValueObject.Example;
+namespace PoEAAValueObject.Example;
 
 public class Tag
 {
