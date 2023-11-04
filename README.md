@@ -1,6 +1,8 @@
+ℹ️ _This repository is part of my "Patterns of Enterprise Application Architecture" (PoEAA) catalog, based on Martin Fowler's book with the same title. For my full work on the topic, see [kaiosilveira/poeaa](https://github.com/kaiosilveira/patterns-of-enterprise-application-architecture)_
+
 [![Continuous Integration](https://github.com/kaiosilveira/csharp-value-object/actions/workflows/dotnet.yml/badge.svg)](https://github.com/kaiosilveira/csharp-value-object/actions/workflows/dotnet.yml)
 
-# Value Object - C#
+# Value Object
 
 A small simple object, like money or a date range, whose equality isn’t based on identity.
 
